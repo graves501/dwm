@@ -11,8 +11,8 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
-static char dmenufont[]             = "monospace:size=10";
+static const char *fonts[]          = { "JetBrains Mono Medium:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
+static char dmenufont[]             = "JetBrains Mono Medium:size=10";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -30,7 +30,7 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {"st", "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
+const char *spcmd2[] = {"st", "-n", "spcalc", "-f", "JetBrains Mono Medium:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
@@ -77,7 +77,8 @@ static const Layout layouts[] = {
 	{ NULL,		NULL },
 };
 
-/* key definitions */
+/* Key definitions */
+/* MODKEY is set to SUPER aka Windows Key */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -119,6 +120,7 @@ static Key keys[] = {
 	TAGKEYS(			XK_7,		6)
 	TAGKEYS(			XK_8,		7)
 	TAGKEYS(			XK_9,		8)
+        { MODKEY|ShiftMask,             XK_q,           quit,           {0} },
 	{ MODKEY,			XK_0,		view,		{.ui = ~0 } },
 	{ MODKEY|ShiftMask,		XK_0,		tag,		{.ui = ~0 } },
 	{ MODKEY,			XK_minus,	spawn,		SHCMD("pamixer --allow-boost -d 5; kill -44 $(pidof dwmblocks)") },
